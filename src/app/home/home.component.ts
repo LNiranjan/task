@@ -23,10 +23,12 @@ export class HomeComponent implements OnInit {
       this.value = params['value'];
     });
     if(localStorage.getItem('basicdata')){
-      this.basicdata = localStorage.getItem('basicdata');
+      let data = localStorage.getItem('basicdata');
+      this.basicdata = data.split(",");
     }
     if(localStorage.getItem('premiumdata')){
-      this.premiumdata = localStorage.getItem('premiumdata');
+      let data = localStorage.getItem('premiumdata');
+      this.premiumdata = data.split(",");
     }
     console.log(this.basicdata);
     console.log(this.premiumdata);
@@ -72,11 +74,12 @@ export class HomeComponent implements OnInit {
     if(this.value == 'basic'){
       if(this.basicdata.length < 5){
         if(!this.dataForm.invalid){
-          this.basicdata.push(this.dataForm.value.data)
+          this.basicdata.push(this.dataForm.value.data);
           this.dataForm.reset();
         }
       }
       localStorage.setItem('basicdata', this.basicdata)
+      alert("data stored in localstorage");
     }
     else{
       if(this.premiumdata.length < 10){
@@ -85,7 +88,8 @@ export class HomeComponent implements OnInit {
           this.dataForm.reset();
         }
       }
-      localStorage.setItem('premiumdata', this.premiumdata)
+      localStorage.setItem('premiumdata', this.premiumdata);
+      alert("data stored in localstorage");
     }
   }
 

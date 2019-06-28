@@ -1,17 +1,20 @@
 <div *ngIf="value=='premium'">
   <div *ngFor="let item of premiumdata; let i = index">
+    <input type="text" value="{{item}}"/>
     {{item}}<span class="glyphicon glyphicon-minus" (click)="delete(i)"></span>
   </div>
 </div>
 <div *ngIf="value=='basic'">
     <div *ngFor="let item of basicdata; let i = index">
-      {{item}}<span class="glyphicon glyphicon-minus" (click)="delete(i)"></span>
+        <input type="text" value="{{item}}"/>&nbsp; &nbsp;
+      <span class="glyphicon glyphicon-minus" (click)="delete(i)"></span>
     </div>
   </div>
 
 <form [formGroup]="dataForm" (ngSubmit)="save()">
   <input type="text" formControlName="data" (keyup)="fun()">&nbsp; &nbsp;
+  <span class="glyphicon glyphicon-minus" (click)="delete(i)"></span>&nbsp; &nbsp;
   <span class="glyphicon glyphicon-plus" (click)= "submit()"></span>
   <br>
-  <button [disabled]="!dis">Submit</button>
+  <button [disabled]="!dis" class="btn btn-primary">Submit</button>
 </form>

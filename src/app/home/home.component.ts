@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     else{
       if(this.value == 'basic'){
         if(this.basicdata.length < 5){
-          this.basicdata.push(this.dataForm.value.data)
+          this.basicdata.push(JSON.stringify(this.dataForm.value.data))
           // localStorage.setItem('basicdata', this.basicdata)
           
           this.dataForm.reset();
@@ -71,10 +71,24 @@ export class HomeComponent implements OnInit {
   }
 
   save(){
+    alert("data storing inprocess");
     if(this.value == 'basic'){
+      if(this.basicdata.length < 5){
+        if(!this.dataForm.invalid){
+          this.basicdata.push([this.dataForm.value.data])
+        }
+      }
       localStorage.setItem('basicdata', this.basicdata)
     }
     else{
+      if(this.premiumdata.length < 10){
+        if(!this.dataForm.invalid){
+          let a =[];
+          a.push(this.dataForm.value.data)
+          console.log(a);
+          this.premiumdata.push(this.dataForm.value.data)
+        }
+      }
       localStorage.setItem('premiumdata', this.premiumdata)
     }
   }
